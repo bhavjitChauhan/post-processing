@@ -1,0 +1,80 @@
+import {
+  CallExpression,
+  Expression,
+  Identifier,
+  isCallExpression,
+  isIdentifier,
+  isNumericLiteral,
+  isUnaryExpression,
+  Node,
+  NumericLiteral,
+} from '@babel/types'
+import parseNegativeExpression from '../../util/parseNegativeExpression'
+import { isNegativeExpression, NegativeExpression } from '../../util/types'
+
+const isValid = (expression: Expression) =>
+  isCallExpression(expression) &&
+  isIdentifier(expression.callee) &&
+  expression.callee.name == 'rect' &&
+  expression.arguments.length >= 4 &&
+  expression.arguments.length <= 8
+
+const rectTransform = (expression: Expression) => {
+  if (!isValid(expression)) return
+
+  // workaround TypeScript issues
+  expression = <CallExpression>expression
+  expression.callee = <Identifier>expression.callee
+
+  if (
+    !expression.arguments.every(
+      (arg: Node) => isNegativeExpression(arg) || isNumericLiteral(arg)
+    )
+  )
+    return
+  const args = <NumericLiteral[] | NegativeExpression[]>expression.arguments
+
+  // transform to square if equal sides
+  let isSquare = false
+  const width: number = isNumericLiteral(args[2])
+    ? args[2].value
+    : parseNegativeExpression(args[2])
+  const height: number = isNumericLiteral(args[3])
+    ? args[3].value
+    : parseNegativeExpression(args[3])
+  if (width == height) {
+    expression.callee.name = 'square'
+    args.splice(3, 1)
+    isSquare = true
+  }
+
+  // set negative rounded corner arguments to 0
+  args.slice(4 - +isSquare).forEach((arg: Node, i) => {
+    if (!isUnaryExpression(arg)) return
+    const { operator, argument } = arg
+    if (operator != '-') return
+    if (!isNumericLiteral(argument)) return
+
+    argument.value = 0
+    args[4 - +isSquare + i] = argument
+  })
+
+  // less than 4 rounded corner arguments do not change output
+  if (args.length + +isSquare != 8) {
+    while (args.length > 5 - +isSquare) args.pop()
+    return
+  }
+
+  // remove duplicate rounded corner arguments
+  let i = args.length - 1,
+    arg = args[i] as NumericLiteral
+  // ensure index is greater than position and dimension arguments
+  while (
+    i > 4 - +isSquare &&
+    arg.value == (arg = args[--i] as NumericLiteral).value
+  ) {
+    args.pop()
+  }
+}
+
+export default rectTransform
