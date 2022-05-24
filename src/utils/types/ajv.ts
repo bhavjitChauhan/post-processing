@@ -1,17 +1,21 @@
-import Ajv from 'ajv'
 import {
-  isNumericLiteral,
+  isAssignmentExpression,
   isCallExpression,
-  isUnaryExpression,
   isIdentifier,
+  isNumericLiteral,
+  isStringLiteral,
+  isUnaryExpression,
 } from '@babel/types'
+import Ajv from 'ajv'
 
 const ajv = new Ajv()
 
 const keywords = {
+  assignmentExpression: isAssignmentExpression,
   callExpression: isCallExpression,
   identifier: isIdentifier,
   numericLiteral: isNumericLiteral,
+  stringLiteral: isStringLiteral,
   unaryExpression: isUnaryExpression,
 }
 

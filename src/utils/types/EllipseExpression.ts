@@ -1,10 +1,13 @@
+import { CallExpression, Identifier, NumericLiteral } from '@babel/types'
+import { NegativeExpression } from '.'
 import ajv from './ajv'
 
-import { NegativeExpression } from '.'
-import { CallExpression, Identifier, NumericLiteral } from '@babel/types'
+interface EllipseIdentifier extends Identifier {
+  name: 'ellipse' | 'circle'
+}
 
 interface EllipseExpression extends CallExpression {
-  callee: Identifier
+  callee: EllipseIdentifier
   arguments: (NumericLiteral | NegativeExpression)[]
 }
 

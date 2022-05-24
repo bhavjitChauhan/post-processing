@@ -1,6 +1,5 @@
-import ajv from './ajv'
-
 import { NumericLiteral, UnaryExpression } from '@babel/types'
+import ajv from './ajv'
 
 interface NegativeExpression extends UnaryExpression {
   argument: NumericLiteral

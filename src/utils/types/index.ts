@@ -1,13 +1,21 @@
-import { NegativeExpression, isNegativeExpression } from './NegativeExpression'
+// organize-imports-ignore
+import { isNegativeExpression, NegativeExpression } from './NegativeExpression'
+
+import {
+  AngleModeExpression,
+  isAngleModeExpression,
+} from './AngleModeExpression'
 import { EllipseExpression, isEllipseExpression } from './EllipseExpression'
 import {
-  RectangleExpression,
   isRectangleExpression,
+  RectangleExpression,
 } from './RectangleExpression'
 
 export {
   NegativeExpression,
   isNegativeExpression,
+  AngleModeExpression,
+  isAngleModeExpression,
   EllipseExpression,
   isEllipseExpression,
   RectangleExpression,
