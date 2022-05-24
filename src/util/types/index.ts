@@ -1,9 +1,15 @@
-import { NumericLiteral, UnaryExpression } from '@babel/types'
+import { NegativeExpression, isNegativeExpression } from './NegativeExpression'
+import { EllipseExpression, isEllipseExpression } from './EllipseExpression'
+import {
+  RectangleExpression,
+  isRectangleExpression,
+} from './RectangleExpression'
 
-import isNegativeExpression from './isNegativeExpression'
-
-interface NegativeExpression extends UnaryExpression {
-  argument: NumericLiteral
+export {
+  NegativeExpression,
+  isNegativeExpression,
+  EllipseExpression,
+  isEllipseExpression,
+  RectangleExpression,
+  isRectangleExpression,
 }
-
-export { NegativeExpression, isNegativeExpression }

@@ -1,38 +1,17 @@
 import {
-  CallExpression,
   Expression,
-  Identifier,
-  isCallExpression,
-  isIdentifier,
   isNumericLiteral,
   isUnaryExpression,
   Node,
   NumericLiteral,
 } from '@babel/types'
 import parseNegativeExpression from '../../util/parseNegativeExpression'
-import { isNegativeExpression, NegativeExpression } from '../../util/types'
-
-const isValid = (expression: Expression) =>
-  isCallExpression(expression) &&
-  isIdentifier(expression.callee) &&
-  expression.callee.name == 'rect' &&
-  expression.arguments.length >= 4 &&
-  expression.arguments.length <= 8
+import { isRectangleExpression } from '../../util/types'
 
 const rectTransform = (expression: Expression) => {
-  if (!isValid(expression)) return
+  if (!isRectangleExpression(expression)) return
 
-  // workaround TypeScript issues
-  expression = <CallExpression>expression
-  expression.callee = <Identifier>expression.callee
-
-  if (
-    !expression.arguments.every(
-      (arg: Node) => isNegativeExpression(arg) || isNumericLiteral(arg)
-    )
-  )
-    return
-  const args = <NumericLiteral[] | NegativeExpression[]>expression.arguments
+  const args = expression.arguments
 
   // transform to square if equal sides
   let isSquare = false

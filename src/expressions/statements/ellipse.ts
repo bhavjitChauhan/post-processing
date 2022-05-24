@@ -9,23 +9,12 @@ import {
   NumericLiteral,
 } from '@babel/types'
 import parseNegativeExpression from '../../util/parseNegativeExpression'
-import { isNegativeExpression, NegativeExpression } from '../../util/types'
-
-const isValid = (expression: Expression) =>
-  isCallExpression(expression) &&
-  isIdentifier(expression.callee) &&
-  expression.callee.name == 'ellipse' &&
-  expression.arguments.length == 4
+import { isEllipseExpression } from '../../util/types'
 
 const ellipseTransform = (expression: Expression) => {
-  if (!isValid(expression)) return
+  if (!isEllipseExpression(expression)) return
 
-  // workaround TypeScript issues
-  expression = <CallExpression>expression
-  expression.callee = <Identifier>expression.callee
-
-  if (!expression.arguments.every((arg: Node) => isNegativeExpression(arg) || isNumericLiteral(arg))) return
-  const args = <NegativeExpression[] | NumericLiteral[]>expression.arguments
+  const args = expression.arguments
 
   // remove if negative width and height
   // if (isNegativeExpression(args[2]) && isNegativeExpression(args[3])) return true

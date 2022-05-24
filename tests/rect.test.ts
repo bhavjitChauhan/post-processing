@@ -1,6 +1,4 @@
-import {
-  expectExpressionStatements,
-} from './helper'
+import { expectExpressionStatements } from './helper'
 
 import rect from '../src/expressions/statements/rect'
 

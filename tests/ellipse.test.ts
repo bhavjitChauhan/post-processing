@@ -1,6 +1,4 @@
-import {
-  expectExpressionStatements,
-} from './helper'
+import { expectExpressionStatements } from './helper'
 
 import ellipseTransform from '../src/expressions/statements/ellipse'
 

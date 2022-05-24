@@ -5,8 +5,7 @@ import generate from '@babel/generator'
 import * as expressions from './expressions'
 
 const code = `
-ellipse(10, 20, 30, -30)
-ellipse(10, 20, -30, -30)
+rect(10, 20, '-30', -30)
 `
 
 const ast = parse(code)
