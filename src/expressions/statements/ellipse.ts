@@ -1,18 +1,11 @@
-import {
-  CallExpression,
-  Expression,
-  Identifier,
-  isCallExpression,
-  isIdentifier,
-  isNumericLiteral,
-  Node,
-  NumericLiteral,
-} from '@babel/types'
-import parseNegativeExpression from '../../util/parseNegativeExpression'
-import { isEllipseExpression } from '../../util/types'
+import { NodePath } from '@babel/traverse'
+import { ExpressionStatement, isNumericLiteral } from '@babel/types'
+import parseNegativeExpression from '../../utils/parseNegativeExpression'
+import { isEllipseExpression } from '../../utils/types'
 
-const ellipseTransform = (expression: Expression) => {
-  if (!isEllipseExpression(expression)) return
+const ellipseTransform = (path: NodePath<ExpressionStatement>) => {
+  if (!isEllipseExpression(path.node.expression)) return
+  const expression = path.node.expression
 
   const args = expression.arguments
 

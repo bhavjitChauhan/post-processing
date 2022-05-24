@@ -1,15 +1,17 @@
+import { NodePath } from '@babel/traverse'
 import {
-  Expression,
+  ExpressionStatement,
   isNumericLiteral,
   isUnaryExpression,
   Node,
   NumericLiteral,
 } from '@babel/types'
-import parseNegativeExpression from '../../util/parseNegativeExpression'
-import { isRectangleExpression } from '../../util/types'
+import parseNegativeExpression from '../../utils/parseNegativeExpression'
+import { isRectangleExpression } from '../../utils/types'
 
-const rectTransform = (expression: Expression) => {
-  if (!isRectangleExpression(expression)) return
+const rectTransform = (path: NodePath<ExpressionStatement>) => {
+  if (!isRectangleExpression(path.node.expression)) return
+  const expression = path.node.expression
 
   const args = expression.arguments
 

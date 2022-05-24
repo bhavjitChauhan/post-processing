@@ -1,15 +1,11 @@
-import { parse } from '@babel/parser'
-import traverse, { NodePath } from '@babel/traverse'
 import generate from '@babel/generator'
-import { ExpressionStatement } from '@babel/types'
+import { parse } from '@babel/parser'
+import traverse from '@babel/traverse'
 
 const transformExpressionStatement = (transformer: Function, code: string) => {
   const ast = parse(code)
   traverse(ast, {
-    ExpressionStatement: (path) => {
-      transformer(path.node.expression)
-      // if (transformer(path.node.expression)) path.remove()
-    },
+    ExpressionStatement: (path) => transformer(path),
   })
   const { code: output } = generate(ast)
   return output
