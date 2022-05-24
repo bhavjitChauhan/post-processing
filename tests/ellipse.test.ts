@@ -1,6 +1,5 @@
-import { expectExpressionStatements } from './helper'
-
 import ellipseTransform from '../src/expressions/statements/ellipse'
+import { expectExpressionStatements } from './helper'
 
 test('transforms circles', () => {
   expectExpressionStatements(ellipseTransform, [
