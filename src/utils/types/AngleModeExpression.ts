@@ -15,7 +15,7 @@ const schema = {
   type: 'object',
   assignmentExpression: true,
   properties: {
-    operator: { const: '=', },
+    operator: { const: '=' },
     left: {
       type: 'object',
       identifier: true,
@@ -26,7 +26,7 @@ const schema = {
       type: 'object',
       stringLiteral: true,
       properties: {
-        value: { type: 'string', },
+        value: { type: 'string' },
       },
       required: ['value'],
     },

@@ -2,12 +2,17 @@ import generate from '@babel/generator'
 import { parse } from '@babel/parser'
 import traverse from '@babel/traverse'
 import * as expressions from './expressions'
+import setup from './snippets/setup'
 
 const code = `
-angleMode = 'degrees'
+function draw() {
+  rect(0, 0, 100, 100)
+}
 `
 
 const ast = parse(code)
+
+ast.program.body.unshift(setup)
 
 traverse(ast, {
   ExpressionStatement: (path) => {

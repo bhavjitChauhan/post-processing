@@ -8,7 +8,9 @@ const angleModeTransform = (path: NodePath<ExpressionStatement>) => {
 
   const callee = identifier('angleMode')
   // emulate behaviour of Processing.js
-  const arg = identifier(expression.right.value == 'degrees' ? 'DEGREES' : 'RADIANS')
+  const arg = identifier(
+    expression.right.value == 'degrees' ? 'DEGREES' : 'RADIANS'
+  )
 
   path.replaceWith(callExpression(callee, [arg]))
 }
