@@ -10,7 +10,7 @@ const ellipseTransform = (path: NodePath<ExpressionStatement>) => {
   const args = expression.arguments
 
   // remove if negative width and height
-  // if (isNegativeExpression(args[2]) && isNegativeExpression(args[3])) return true
+  // if (isNegativeExpression(args[2]) && isNegativeExpression(args[3])) return path.remove()
 
   // transform to circle if equal radius
   const width: number = isNumericLiteral(args[2])
