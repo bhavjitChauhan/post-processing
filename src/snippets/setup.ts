@@ -6,9 +6,10 @@ import {
   identifier,
   numericLiteral,
 } from '@babel/types'
+import { SetupDeclaration } from '../utils/types'
 
 // prettier-ignore
-const setup = functionDeclaration(
+const createSetupDeclaration = () => functionDeclaration(
   identifier('setup'),
   [],
   blockStatement([
@@ -22,6 +23,6 @@ const setup = functionDeclaration(
       identifier('noSmooth'), []
     )),
   ])
-)
+) as SetupDeclaration
 
-export default setup
+export default createSetupDeclaration
