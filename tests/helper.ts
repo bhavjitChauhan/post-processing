@@ -19,11 +19,16 @@ const transform = (
 const expectTransformations = (
   node: string,
   transformer: Function,
-  transformations: Array<[string, string]>,
+  transformations: Array<[string, string | Function]>,
   ...args: Array<any>
 ) => {
-  for (const [input, output] of transformations)
-    expect(transform(node, transformer, input, ...args)).toBe(output)
+  for (const [input, expected] of transformations) {
+    if (typeof expected === 'string') {
+      expect(transform(node, transformer, input, ...args)).toBe(expected)
+    } else if (typeof expected === 'function') {
+      expect(expected(transform(node, transformer, input, ...args))).toBe(true)
+    }
+  }
 }
 
 export { expectTransformations, transform }

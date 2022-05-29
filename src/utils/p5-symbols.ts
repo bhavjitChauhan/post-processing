@@ -349,4 +349,6 @@ const methods = [
   'year',
 ]
 
-export { properties, methods }
+const symbols = [...properties, ...methods]
+
+export { properties, methods, symbols }
