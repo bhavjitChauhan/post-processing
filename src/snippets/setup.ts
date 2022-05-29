@@ -6,7 +6,7 @@ import {
   identifier,
   numericLiteral,
 } from '@babel/types'
-import { SetupDeclaration } from '../utils/types'
+import { SetupDeclaration } from '../types'
 
 // prettier-ignore
 const createSetupDeclaration = () => functionDeclaration(

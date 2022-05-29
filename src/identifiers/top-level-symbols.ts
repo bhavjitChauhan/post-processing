@@ -1,11 +1,7 @@
 import { NodePath } from '@babel/traverse'
 import { Identifier, isProgram, isStatement } from '@babel/types'
+import { isDrawNode, isSetupDeclaration, SetupDeclaration } from '../types'
 import { methods, properties } from '../utils/p5-symbols'
-import {
-  isDrawNode,
-  isSetupDeclaration,
-  SetupDeclaration,
-} from '../utils/types'
 
 const topLevelSymbolsTransform = (
   path: NodePath<Identifier>,

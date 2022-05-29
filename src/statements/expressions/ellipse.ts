@@ -1,7 +1,7 @@
 import { NodePath } from '@babel/traverse'
 import { ExpressionStatement, isNumericLiteral } from '@babel/types'
+import { isEllipseExpression } from '../../types'
 import parseNegativeExpression from '../../utils/parseNegativeExpression'
-import { isEllipseExpression } from '../../utils/types'
 
 const ellipseTransform = (path: NodePath<ExpressionStatement>) => {
   if (!isEllipseExpression(path.node.expression)) return

@@ -1,4 +1,4 @@
-import { NegativeExpression } from './types'
+import { NegativeExpression } from '../types'
 
 const parseNegativeExpression = (expression: NegativeExpression) => {
   const { argument } = expression
