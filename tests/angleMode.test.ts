@@ -1,8 +1,8 @@
-import angleModeTransform from '../src/expressions/statements/angleMode'
-import { expectExpressionStatements } from './helper'
+import angleModeTransform from '../src/statements/expressions/angleMode'
+import { expectTransformations } from './helper'
 
 test('transforms angle mode assignments', () => {
-  expectExpressionStatements(angleModeTransform, [
+  expectTransformations('ExpressionStatement', angleModeTransform, [
     ['angleMode = "degrees";', 'angleMode(DEGREES);'],
     ['angleMode = "radians";', 'angleMode(RADIANS);'],
     ['angleMode = "";', 'angleMode(RADIANS);'],

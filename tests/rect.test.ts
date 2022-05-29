@@ -1,15 +1,15 @@
-import rect from '../src/expressions/statements/rect'
-import { expectExpressionStatements } from './helper'
+import rect from '../src/statements/expressions/rect'
+import { expectTransformations } from './helper'
 
 test('transforms squares', () => {
-  expectExpressionStatements(rect, [
+  expectTransformations('ExpressionStatement', rect, [
     ['rect(10, 20, 30, 30);', 'square(10, 20, 30);'],
     ['rect(10, 20, -30, -30);', 'square(10, 20, -30);'],
   ])
 })
 
 test('sets negative rounded corner arguments to 0', () => {
-  expectExpressionStatements(rect, [
+  expectTransformations('ExpressionStatement', rect, [
     ['rect(10, 20, 30, 40, -1);', 'rect(10, 20, 30, 40, 0);'],
     [
       'rect(10, 20, 30, 40, -1, -1, -1, 1);',
@@ -22,7 +22,7 @@ test('sets negative rounded corner arguments to 0', () => {
 })
 
 test('transforms rectangles with rounded corners', () => {
-  expectExpressionStatements(rect, [
+  expectTransformations('ExpressionStatement', rect, [
     ['rect(10, 20, 30, 40, 1, 1, 1, 1);', 'rect(10, 20, 30, 40, 1);'],
     ['rect(10, 20, 30, 40, 2, 1, 1, 1);', 'rect(10, 20, 30, 40, 2, 1);'],
     ['rect(10, 20, 30, 40, 1, 2, 1, 1);', 'rect(10, 20, 30, 40, 1, 2, 1);'],
@@ -31,7 +31,7 @@ test('transforms rectangles with rounded corners', () => {
 })
 
 test('transforms squares with rounded corners', () => {
-  expectExpressionStatements(rect, [
+  expectTransformations('ExpressionStatement', rect, [
     ['rect(10, 20, 30, 30, 1, 1, 1, 1);', 'square(10, 20, 30, 1);'],
     ['rect(10, 20, 30, 30, 2, 1, 1, 1);', 'square(10, 20, 30, 2, 1);'],
     ['rect(10, 20, 30, 30, 2, 2, 1, 1);', 'square(10, 20, 30, 2, 2, 1);'],
@@ -40,7 +40,7 @@ test('transforms squares with rounded corners', () => {
 })
 
 test('removes unneccesary rounded corner arguments', () => {
-  expectExpressionStatements(rect, [
+  expectTransformations('ExpressionStatement', rect, [
     ['rect(10, 20, 30, 40, 1, 2, 3);', 'rect(10, 20, 30, 40, 1);'],
     ['rect(10, 20, 30, 40, 1, 2);', 'rect(10, 20, 30, 40, 1);'],
     ['rect(10, 20, 30, 30, 1, 2, 3);', 'square(10, 20, 30, 1);'],

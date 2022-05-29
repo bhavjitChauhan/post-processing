@@ -1,22 +1,29 @@
 import generate from '@babel/generator'
 import { parse } from '@babel/parser'
-import traverse from '@babel/traverse'
+import traverse, { NodePath } from '@babel/traverse'
 
-const transformExpressionStatement = (transformer: Function, code: string) => {
+const transform = (
+  node: string,
+  transformer: Function,
+  code: string,
+  ...args: Array<any>
+) => {
   const ast = parse(code)
   traverse(ast, {
-    ExpressionStatement: (path) => transformer(path),
+    [node]: (path: NodePath) => transformer(path, ...args),
   })
   const { code: output } = generate(ast)
   return output
 }
 
-const expectExpressionStatements = (
+const expectTransformations = (
+  node: string,
   transformer: Function,
-  transformations: Array<[string, string]>
+  transformations: Array<[string, string]>,
+  ...args: Array<any>
 ) => {
   for (const [input, output] of transformations)
-    expect(transformExpressionStatement(transformer, input)).toBe(output)
+    expect(transform(node, transformer, input, ...args)).toBe(output)
 }
 
-export { expectExpressionStatements, transformExpressionStatement }
+export { expectTransformations, transform }
