@@ -37,7 +37,7 @@ for (const [keyword, fn] of Object.entries(keywords)) {
   ajv.addKeyword({
     keyword,
     schema: false,
-    validate: (data: any) => fn(data),
+    validate: (data: object | null | undefined) => fn(data),
     errors: false,
   })
 }

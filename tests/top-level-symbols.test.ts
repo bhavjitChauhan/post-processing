@@ -1,22 +1,27 @@
 import topLevelSymbolsTransform from '../src/identifiers/top-level-symbols'
-import createSetupDeclaration from '../src/snippets/setup'
-import { expectTransformations } from './helper'
+import {
+  expectTransformations,
+  extractSetupDeclaration,
+  removeSetupDeclaration,
+} from './helper'
 
 test('relocates top level symbols', () => {
-  const setup = createSetupDeclaration(),
-    length = setup.body.body.length
-  const transformations: [string, string][] = [
-    ['angleMode = "degrees";', ''],
-    ['noSmooth();', ''],
+  const transformations: [string, (code: string) => boolean][] = [
+    [
+      'angleMode = "degrees";',
+      (code: string) => {
+        const setupDeclaration = extractSetupDeclaration(code)
+        for (let i = 0; i < transformations.length; i++) {
+          expect(setupDeclaration.body.body.at(-i)).not.toBeNull()
+        }
+        return removeSetupDeclaration(code) == ''
+      },
+    ],
   ]
   expectTransformations(
     'Identifier',
     topLevelSymbolsTransform,
     transformations,
-    setup
+    true
   )
-  expect(setup.body.body.length).toBe(length + transformations.length)
-  for (let i = 0; i < transformations.length; i++) {
-    expect(setup.body.body.at(-i)).not.toBeNull()
-  }
 })

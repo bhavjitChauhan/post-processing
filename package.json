@@ -6,8 +6,10 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
+    "lint": "eslint .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "test": "jest",
+    "compile": "tsc && babel example.js --plugins=./build/",
     "prepare": "husky install"
   },
   "author": "Bhavjit Chauhan",
@@ -17,6 +19,11 @@
     "@types/babel__generator": "^7.6.4",
     "@types/babel__traverse": "^7.17.1",
     "@types/jest": "^27.5.1",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^26.4.5",
     "husky": "^8.0.0",
     "jest": "^28.1.0",
     "prettier": "^2.6.2",
@@ -26,6 +33,7 @@
     "typescript": "^4.6.4"
   },
   "dependencies": {
+    "@babel/cli": "^7.17.10",
     "@babel/generator": "^7.18.0",
     "@babel/parser": "^7.18.0",
     "@babel/traverse": "^7.18.0",

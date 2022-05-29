@@ -20,7 +20,7 @@ const isNegativeExpression = ajv.compile<NegativeExpression>(schema)
 ajv.addKeyword({
   keyword: 'negativeExpression',
   schema: false,
-  validate: (data: any) => isNegativeExpression(data),
+  validate: (data: unknown) => isNegativeExpression(data),
   errors: false,
 })
 
