@@ -1,15 +1,13 @@
 import { NodePath } from '@babel/traverse'
 import { Identifier, isProgram, isStatement } from '@babel/types'
-import { isDrawNode, isSetupDeclaration, SetupDeclaration } from '../types'
+import { isDrawNode, isSetupDeclaration } from '../types'
+import findSetupDeclaration from '../utils/findSetupDeclaration'
 import { symbols } from '../utils/p5-symbols'
 
-const topLevelSymbolsTransform = (
-  path: NodePath<Identifier>,
-  setupDeclaration: SetupDeclaration
-) => {
+const topLevelSymbolsTransform = (path: NodePath<Identifier>) => {
   if (!symbols.includes(path.node.name)) return
 
-  let found = path.find((path) => {
+  const found = path.find((path) => {
     const parentNode = path?.parentPath?.node
     return (
       isSetupDeclaration(parentNode) ||
@@ -27,11 +25,13 @@ const topLevelSymbolsTransform = (
   )
     return
 
-  // insert node into setup()
-  setupDeclaration.body.body.push(found.node)
-
-  // remove node
+  const node = found.node
   found.remove()
+
+  // insert node into setup
+  const setupDeclaration = findSetupDeclaration(found)
+  if (!setupDeclaration) return
+  setupDeclaration.body.body.push(node)
 }
 
 export default topLevelSymbolsTransform

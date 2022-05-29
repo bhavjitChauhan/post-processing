@@ -1,36 +1,32 @@
-import generate from '@babel/generator'
-import { parse } from '@babel/parser'
-import traverse from '@babel/traverse'
+import { NodePath } from '@babel/traverse'
+import {
+  ExpressionStatement,
+  Identifier,
+  Program,
+  VariableDeclaration,
+} from '@babel/types'
 import * as declarations from './declarations'
 import * as identifiers from './identifiers'
 import createSetupDeclaration from './snippets/setup'
 import * as statements from './statements'
-import { SetupDeclaration } from './types'
 
-const code = `
-function fn(angleMode) {}
-var fnB = function(angleMode) {}
-`
-
-const ast = parse(code)
-
-ast.program.body.unshift(createSetupDeclaration())
-const setupDeclaration = ast.program.body[0] as SetupDeclaration
-
-traverse(ast, {
-  ExpressionStatement: (path) => {
-    const transformations = Object.values(statements.expressions)
-    for (const transform of transformations) transform(path)
-  },
-  Identifier: (path) => {
-    for (const transform of Object.values(identifiers))
-      transform(path, setupDeclaration)
-  },
-  VariableDeclaration: (path) => {
-    const transformations = Object.values(declarations.variables)
-    for (const transform of transformations) transform(path)
+const transformer = () => ({
+  visitor: {
+    Program: (path: NodePath<Program>) => {
+      path.unshiftContainer('body', createSetupDeclaration())
+    },
+    ExpressionStatement: (path: NodePath<ExpressionStatement>) => {
+      const transformations = Object.values(statements.expressions)
+      for (const transform of transformations) transform(path)
+    },
+    Identifier: (path: NodePath<Identifier>) => {
+      for (const transform of Object.values(identifiers)) transform(path)
+    },
+    VariableDeclaration: (path: NodePath<VariableDeclaration>) => {
+      const transformations = Object.values(declarations.variables)
+      for (const transform of transformations) transform(path)
+    },
   },
 })
 
-const { code: output } = generate(ast)
-console.log(output)
+export default transformer
