@@ -3,7 +3,7 @@ import { Program } from '@babel/types'
 import { isSetupDeclaration, SetupDeclaration } from '../types'
 
 const findSetupDeclaration = (path: NodePath) => {
-  const found = path.findParent((path) =>
+  const found = path.findParent(path =>
     path.isProgram()
   ) as NodePath<Program> | null
   if (!found) return null

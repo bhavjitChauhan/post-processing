@@ -7,7 +7,7 @@ import { symbols } from '../../utils/p5-symbols'
 const topLevelSymbolsTransform = (path: NodePath<Identifier>) => {
   if (!symbols.includes(path.node.name)) return
 
-  const found = path.find((path) => {
+  const found = path.find(path => {
     const parentNode = path?.parentPath?.node
     return (
       isSetupDeclaration(parentNode) ||

@@ -36,7 +36,7 @@ const expectTransformations = <T>(
 
 const extractSetupDeclaration = (code: string) => {
   const ast = parse(code)
-  const setup = ast.program.body.find((node) =>
+  const setup = ast.program.body.find(node =>
     isSetupDeclaration(node)
   ) as SetupDeclaration
   return setup
@@ -45,7 +45,7 @@ const extractSetupDeclaration = (code: string) => {
 const removeSetupDeclaration = (code: string) => {
   const ast = parse(code)
   traverse(ast, {
-    FunctionDeclaration: (path) => {
+    FunctionDeclaration: path => {
       isSetupDeclaration(path.node) && path.remove()
     },
   })
