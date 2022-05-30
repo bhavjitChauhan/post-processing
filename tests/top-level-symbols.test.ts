@@ -1,4 +1,4 @@
-import topLevelSymbolsTransform from '../src/identifiers/top-level-symbols'
+import topLevelSymbolsTransform from '../src/transformations//identifiers/top-level-symbols'
 import {
   expectTransformations,
   extractSetupDeclaration,

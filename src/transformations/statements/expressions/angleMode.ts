@@ -1,6 +1,6 @@
 import { NodePath } from '@babel/traverse'
 import { callExpression, ExpressionStatement, identifier } from '@babel/types'
-import { isAngleModeExpression } from '../../types'
+import { isAngleModeExpression } from '../../../types'
 
 const angleModeTransform = (path: NodePath<ExpressionStatement>) => {
   if (!isAngleModeExpression(path.node.expression)) return

@@ -1,8 +1,12 @@
 // organize-imports-ignore
 import { isNegativeExpression, NegativeExpression } from './NegativeExpression'
 
+export { isNegativeExpression, NegativeExpression }
+
 import { DrawNode, isDrawNode } from './DrawNode'
 import { SetupDeclaration, isSetupDeclaration } from './SetupDeclaration'
+
+export { DrawNode, isDrawNode, SetupDeclaration, isSetupDeclaration }
 
 import {
   AngleModeExpression,
@@ -15,15 +19,6 @@ import {
 } from './RectangleExpression'
 
 export {
-  // Primitives
-  NegativeExpression,
-  isNegativeExpression,
-  // Blocks
-  DrawNode,
-  isDrawNode,
-  SetupDeclaration,
-  isSetupDeclaration,
-  // Expressions
   AngleModeExpression,
   isAngleModeExpression,
   EllipseExpression,

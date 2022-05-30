@@ -4,7 +4,7 @@ import {
   isVariableDeclarator,
   VariableDeclaration,
 } from '@babel/types'
-import { methods } from '../../utils/p5-symbols'
+import { methods } from '../../../utils/p5-symbols'
 
 const blacklist = ['angleMode']
 

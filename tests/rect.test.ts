@@ -1,4 +1,4 @@
-import rect from '../src/statements/expressions/rect'
+import rect from '../src/transformations//statements/expressions/rect'
 import { expectTransformations } from './helper'
 
 test('transforms squares', () => {

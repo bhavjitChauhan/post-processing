@@ -1,8 +1,8 @@
 import { NodePath } from '@babel/traverse'
 import { Identifier, isProgram, isStatement } from '@babel/types'
-import { isDrawNode, isSetupDeclaration } from '../types'
-import findSetupDeclaration from '../utils/findSetupDeclaration'
-import { symbols } from '../utils/p5-symbols'
+import { isDrawNode, isSetupDeclaration } from '../../types'
+import findSetupDeclaration from '../../utils/findSetupDeclaration'
+import { symbols } from '../../utils/p5-symbols'
 
 const topLevelSymbolsTransform = (path: NodePath<Identifier>) => {
   if (!symbols.includes(path.node.name)) return

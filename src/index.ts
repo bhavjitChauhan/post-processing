@@ -5,10 +5,10 @@ import {
   Program,
   VariableDeclaration,
 } from '@babel/types'
-import * as declarations from './declarations'
-import * as identifiers from './identifiers'
 import createSetupDeclaration from './snippets/setup'
-import * as statements from './statements'
+import * as declarations from './transformations/declarations'
+import * as identifiers from './transformations/identifiers'
+import * as statements from './transformations/statements'
 
 const transformer = () => ({
   visitor: {

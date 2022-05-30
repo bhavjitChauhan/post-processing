@@ -1,4 +1,4 @@
-import reservedParametersTransform from '../src/identifiers/reserved-parameters'
+import reservedParametersTransform from '../src/transformations//identifiers/reserved-parameters'
 import { expectTransformations } from './helper'
 
 test('renames reserved parameters in function declarations', () => {

@@ -1,4 +1,4 @@
-import ellipseTransform from '../src/statements/expressions/ellipse'
+import ellipseTransform from '../src/transformations//statements/expressions/ellipse'
 import { expectTransformations } from './helper'
 
 test('transforms circles', () => {

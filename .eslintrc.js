@@ -11,6 +11,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
+  ignorePatterns: ['example.js'],
   overrides: [
     {
       files: ['*.test.ts'],

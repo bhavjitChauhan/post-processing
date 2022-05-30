@@ -1,4 +1,4 @@
-import reservedVariablessTransform from '../src/declarations/variables/reserved-variables'
+import reservedVariablessTransform from '../src/transformations//declarations/variables/reserved-variables'
 import { expectTransformations } from './helper'
 
 test('renames reserved symbols in variable declarations', () => {

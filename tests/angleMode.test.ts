@@ -1,4 +1,4 @@
-import angleModeTransform from '../src/statements/expressions/angleMode'
+import angleModeTransform from '../src/transformations/statements/expressions/angleMode'
 import { expectTransformations } from './helper'
 
 test('transforms angle mode assignments', () => {

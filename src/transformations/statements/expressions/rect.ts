@@ -6,8 +6,8 @@ import {
   Node,
   NumericLiteral,
 } from '@babel/types'
-import { isRectangleExpression } from '../../types'
-import parseNegativeExpression from '../../utils/parseNegativeExpression'
+import { isRectangleExpression } from '../../../types'
+import parseNegativeExpression from '../../../utils/parseNegativeExpression'
 
 const rectTransform = (path: NodePath<ExpressionStatement>) => {
   if (!isRectangleExpression(path.node.expression)) return
