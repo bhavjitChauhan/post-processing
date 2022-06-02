@@ -3,3 +3,4 @@
 
 npx pretty-quick --staged
 npx eslint . --fix
+exec git diff --cached --name-only | npx cspell --no-summary --no-progress --no-must-find-files --file-list stdin

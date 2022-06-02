@@ -2,12 +2,12 @@ import { CallExpression, Identifier, NumericLiteral } from '@babel/types'
 import { NegativeExpression } from '.'
 import ajv from './ajv'
 
-interface RectangleIndentifier extends Identifier {
+interface RectangleIdentifier extends Identifier {
   name: 'rect' | 'square'
 }
 
 interface RectangleExpression extends CallExpression {
-  callee: RectangleIndentifier
+  callee: RectangleIdentifier
   arguments: (NumericLiteral | NegativeExpression)[]
 }
 

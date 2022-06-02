@@ -1,3 +1,3 @@
-import reservedVariablessTransform from './reserved-variables'
+import reservedVariablesTransform from './reserved-variables'
 
-export { reservedVariablessTransform }
+export { reservedVariablesTransform }

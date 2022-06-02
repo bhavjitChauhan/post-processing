@@ -39,7 +39,7 @@ test('transforms squares with rounded corners', () => {
   ])
 })
 
-test('removes unneccesary rounded corner arguments', () => {
+test('removes unnecessary rounded corner arguments', () => {
   expectTransformations('ExpressionStatement', rect, [
     ['rect(10, 20, 30, 40, 1, 2, 3);', 'rect(10, 20, 30, 40, 1);'],
     ['rect(10, 20, 30, 40, 1, 2);', 'rect(10, 20, 30, 40, 1);'],

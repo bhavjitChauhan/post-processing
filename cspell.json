@@ -1,0 +1,6 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": ["fract", "lerp", "millis", "pmouse", "pwin", "unchar", "unhex"],
+  "ignorePaths": ["**.config.json", "**.js", "**.json"]
+}
