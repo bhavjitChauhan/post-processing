@@ -23,7 +23,7 @@ test('collects like arguments', () => {
     ['background(1, 1, 1, 2);', 'clear();\nbackground(1, 2);'],
     ['background(1, 1, 1, a);', 'clear();\nbackground(1, a);'],
     ['background(x, x, x);', 'background(x);'],
-    ['background(x, x, x, a);', 'background(x, a);'],
-    ['background(x, x, x, 1);', 'background(x, 1);'],
+    ['background(x, x, x, a);', 'clear();\nbackground(x, a);'],
+    ['background(x, x, x, 1);', 'clear();\nbackground(x, 1);'],
   ])
 })
