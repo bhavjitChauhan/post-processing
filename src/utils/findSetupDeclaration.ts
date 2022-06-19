@@ -8,7 +8,7 @@ const findSetupDeclaration = (path: NodePath) => {
   ) as NodePath<Program> | null
   if (!found) return null
   if (!isSetupDeclaration(found.node.body[0])) return null
-  return found.node.body[0] as SetupDeclaration
+  return found.get('body.0') as NodePath<SetupDeclaration>
 }
 
 export default findSetupDeclaration

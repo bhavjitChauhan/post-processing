@@ -8,12 +8,21 @@ import {
 import createSetupDeclaration from './snippets/setup'
 import * as declarations from './transformations/declarations'
 import * as identifiers from './transformations/identifiers'
+import topLevelSymbolsTransform from './transformations/identifiers/top-level-symbols'
 import * as statements from './transformations/statements'
 
 const transformer = () => ({
   visitor: {
-    Program: (path: NodePath<Program>) => {
-      path.unshiftContainer('body', createSetupDeclaration())
+    Program: {
+      enter(path: NodePath<Program>) {
+        path.unshiftContainer('body', createSetupDeclaration())
+        path.traverse({
+          Identifier: topLevelSymbolsTransform,
+        })
+      },
+      exit(path: NodePath<Program>) {
+        path.stop()
+      },
     },
     ExpressionStatement: (path: NodePath<ExpressionStatement>) => {
       const transformations = Object.values(statements.expressions)

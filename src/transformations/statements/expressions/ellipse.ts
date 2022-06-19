@@ -6,7 +6,6 @@ import parseNegativeExpression from '../../../utils/parseNegativeExpression'
 const ellipseTransform = (path: NodePath<ExpressionStatement>) => {
   if (!isEllipseExpression(path.node.expression)) return
   const expression = path.node.expression
-
   const args = expression.arguments
 
   // remove if negative width and height

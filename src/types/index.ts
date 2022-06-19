@@ -12,6 +12,11 @@ import {
   AngleModeExpression,
   isAngleModeExpression,
 } from './AngleModeExpression'
+import {
+  BackgroundExpression,
+  isBackgroundExpression,
+} from './BackgroundExpression'
+import { ClearStatement, isClearStatement } from './ClearStatement'
 import { EllipseExpression, isEllipseExpression } from './EllipseExpression'
 import {
   isRectangleExpression,
@@ -21,6 +26,10 @@ import {
 export {
   AngleModeExpression,
   isAngleModeExpression,
+  BackgroundExpression,
+  isBackgroundExpression,
+  ClearStatement,
+  isClearStatement,
   EllipseExpression,
   isEllipseExpression,
   RectangleExpression,

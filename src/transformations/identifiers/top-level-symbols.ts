@@ -31,7 +31,7 @@ const topLevelSymbolsTransform = (path: NodePath<Identifier>) => {
   // insert node into setup
   const setupDeclaration = findSetupDeclaration(found)
   if (!setupDeclaration) return
-  setupDeclaration.body.body.push(node)
+  setupDeclaration.get('body').pushContainer('body', node)
 }
 
 export default topLevelSymbolsTransform

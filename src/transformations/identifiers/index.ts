@@ -1,4 +1,4 @@
 import reservedParametersTransform from './reserved-parameters'
-import topLevelSymbolsTransform from './top-level-symbols'
+// import topLevelSymbolsTransform from './top-level-symbols'
 
-export { reservedParametersTransform, topLevelSymbolsTransform }
+export { reservedParametersTransform /* topLevelSymbolsTransform */ }
