@@ -1,0 +1,5 @@
+{
+  "delay": 1000,
+  "exec": "babel example.js --plugins=./build --out-file=example-compiled.js",
+  "watch": "build"
+}

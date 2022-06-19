@@ -1,4 +1,5 @@
-angleMode = 'radians'
-
-ellipse(25, 25, 50, 50)
-rect(50, 50, 50, 50)
+background(100, 100)
+rect(100, 100, 100, 100)
+ellipse(100, 100, 100, 100)
+background(100, 100, 123)
+background(100, 100, 123, 10)
