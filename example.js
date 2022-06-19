@@ -1,5 +1,7 @@
-background(100, 100)
-rect(100, 100, 100, 100)
-ellipse(100, 100, 100, 100)
-background(100, 100, 123)
-background(100, 100, 123, 10)
+background(gray, a)
+background(r, g, b, a)
+
+background(1, 1, 1)
+background(1, 1, 1, 2)
+background(x, x, x)
+background(x, x, x, y)
