@@ -22,10 +22,10 @@ const transform = <T>(
 const expectTransformations = <T>(
   node: string,
   transformer: (path: NodePath<T>) => void,
-  transformations: Array<[string, string | ((code: string) => boolean)]>,
+  transformations: Array<[string, (string | ((code: string) => boolean))?]>,
   setup = false
 ) => {
-  for (const [input, expected] of transformations) {
+  for (const [input, expected = input] of transformations) {
     if (typeof expected == 'string') {
       expect(transform<T>(node, transformer, input, setup)).toBe(expected)
     } else if (typeof expected == 'function') {

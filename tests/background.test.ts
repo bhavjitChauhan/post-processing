@@ -5,8 +5,8 @@ test('appends clear statement to background expressions with alpha arguments', (
   expectTransformations('ExpressionStatement', backgroundTransform, [
     ['background(1, 2, 3, 4);', 'clear();\nbackground(1, 2, 3, 4);'],
     ['background(1, 2);', 'clear();\nbackground(1, 2);'],
-    ['background(1, 2, 3);', 'background(1, 2, 3);'],
-    ['background(1);', 'background(1);'],
+    ['background(1, 2, 3);'],
+    ['background(1);'],
   ])
 })
 
