@@ -96,26 +96,24 @@ const schema = {
       properties: {
         declarations: {
           type: 'array',
-          items: [
-            {
-              type: 'object',
-              variableDeclarator: true,
-              properties: {
-                id: {
-                  type: 'object',
-                  identifier: true,
-                  properties: {
-                    name: { const: 'draw' },
-                  },
-                  required: ['name'],
+          items: {
+            type: 'object',
+            variableDeclarator: true,
+            properties: {
+              id: {
+                type: 'object',
+                identifier: true,
+                properties: {
+                  name: { const: 'draw' },
                 },
-                init: {
-                  oneOf: [{ expression: true }, { identifier: true }],
-                },
+                required: ['name'],
               },
-              required: ['id', 'init'],
+              init: {
+                oneOf: [{ expression: true }, { identifier: true }],
+              },
             },
-          ],
+            required: ['id', 'init'],
+          },
           minItems: 1,
           maxItems: 1,
         },

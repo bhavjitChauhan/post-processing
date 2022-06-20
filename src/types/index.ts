@@ -17,6 +17,10 @@ import {
   isBackgroundExpression,
 } from './BackgroundExpression'
 import { ClearStatement, isClearStatement } from './ClearStatement'
+import {
+  ColorModeExpression,
+  isColorModeExpression,
+} from './ColorModeExpression'
 import { EllipseExpression, isEllipseExpression } from './EllipseExpression'
 import {
   isRectangleExpression,
@@ -30,6 +34,8 @@ export {
   isBackgroundExpression,
   ClearStatement,
   isClearStatement,
+  ColorModeExpression,
+  isColorModeExpression,
   EllipseExpression,
   isEllipseExpression,
   RectangleExpression,

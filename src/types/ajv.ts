@@ -13,9 +13,12 @@ import {
   isVariableDeclaration,
   isVariableDeclarator,
 } from '@babel/types'
-import Ajv from 'ajv'
+import Ajv from 'ajv/dist/2020'
 
-const ajv = new Ajv()
+const ajv = new Ajv({
+  allErrors: true,
+  strictTuples: false,
+})
 
 const keywords = {
   assignmentExpression: isAssignmentExpression,
