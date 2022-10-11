@@ -18,7 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.19.3",
-    "@babel/generator": "^7.18.2",
+    "@babel/generator": "^7.19.5",
     "@babel/parser": "^7.19.1",
     "@babel/traverse": "^7.19.1",
     "@types/babel__generator": "^7.6.4",
